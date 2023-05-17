@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Fitness</string>
+    <string name="tvLogin">Login</string>
+    <string name="edtUsername">Username</string>
+    <string name="hintUsername">Username</string>
+    <string name="hintPassword">Password</string>
 </resources>
