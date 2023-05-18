@@ -4,4 +4,6 @@
     <string name="edtUsername">Username</string>
     <string name="hintUsername">Username</string>
     <string name="hintPassword">Password</string>
+    <string name="btnLogin">Log in</string>
+    <string name="tvLoginForm">Login to Fitness</string>
 </resources>
