@@ -3,7 +3,7 @@
     <string name="tvUsername">Username</string>
     <string name="tvPassword">Password</string>
     <string name="btnLogin">Log in</string>
-    <string name="btnToCreateAcc">No account?Click me!</string>
+    <string name="btnToForgotPage">forgot account?</string>
     <string name="btnSignUp">Sign up!</string>
     <string name="tvFullname">Full name</string>
     <string name="tvEmail">E-Mail</string>
@@ -11,4 +11,5 @@
     <string name="btnCreateAcc">Create Account</string>
     <string name="btnSend">Send</string>
     <string name="tvInputEmail">Please input your email/username.</string>
+    <string name="tvPromtMsg"> </string>
 </resources>

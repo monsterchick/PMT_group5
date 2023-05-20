@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import org.json.JSONObject
-import java.io.File
 
 class Signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +15,7 @@ class Signup : AppCompatActivity() {
         val tvUsername: TextView = findViewById(R.id.tvUsername)
         val tvEmail: TextView = findViewById(R.id.tvEmail)
         val tvPassword: TextView = findViewById(R.id.tvPassword)
-        val tvConfirmPassword: TextView = findViewById(R.id.tvConformPassword)
+        val tvConfirmPassword: TextView = findViewById(R.id.tvConfirmPassword)
         val btnCreateAcc: TextView = findViewById(R.id.btnCreateAcc)
 
         btnCreateAcc.setOnClickListener {

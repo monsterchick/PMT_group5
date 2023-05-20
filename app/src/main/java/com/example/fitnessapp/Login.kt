@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import org.json.JSONObject
 
 
 class Login : AppCompatActivity() {
@@ -20,21 +21,58 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
         // page login to page forgot
-        val btnToCreateAcc: Button = findViewById(R.id.btnToCreateAcc)
+        val btnToCreateAcc: Button = findViewById(R.id.btnToForgotPage)
         btnToCreateAcc.setOnClickListener {
             val intent = Intent(this, Forgot::class.java)
             startActivity(intent)
         }
 
+
+
         // login logic
         val tvUsername: TextView = findViewById(R.id.tvUsername)
         val tvPassword: TextView = findViewById(R.id.tvPassword)
         val btnLogin:Button = findViewById(R.id.btnLogin)
+        val tvPromtMsg:TextView = findViewById(R.id.tvPromtMsg)
+
         btnLogin.setOnClickListener {
             val username = tvUsername.text.toString()
             val password = tvPassword.text.toString()
-            Log.d("aaa", username + password)
 
+            val user = JSONObject()
+            user.put("username","admin")
+            user.put("password","pas")
+
+            // user database for testing
+            val users = JSONObject()
+            users.put("user_demo", user)
+
+            val pwd = users.getJSONObject("user_demo").getString("password")
+            val usr = users.getJSONObject("user_demo").getString("username")
+
+            if (username!=usr && password==pwd){
+//                Log.d("case","username incor. password corr")
+                tvPromtMsg.text = "Username or Password was wrong retry"
+            } else if(username==usr && password!=pwd){
+//                Log.d("case","username corr. password incorr")
+                tvPromtMsg.text = "Username or Password was wrong retry"
+            } else if(username!=usr && password!=pwd){
+//                Log.d("case","username incorr. password incorr")
+                tvPromtMsg.text = "Username or Password was wrong retry"
+            } else{
+//                Log.d("case","username corr. password corr")
+                tvPromtMsg.text = "Successful login"
+            }
+
+
+            // test
+            Log.d("test", "username:$username password:$password")
+            val obj = users.toString()
+            val specific_user = users.getJSONObject("user_demo").toString()
+            val pwdtest = users.getJSONObject("user_demo").getString("password")
+            Log.d("specific_user","specific_user:$specific_user")
+            Log.d("pwd","password: $pwdtest")
+            Log.d("testlogin","username:$username usr:$usr password:$password pwd:$pwd")
 
         }
     }
