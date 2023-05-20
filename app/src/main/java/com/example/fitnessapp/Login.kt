@@ -1,6 +1,7 @@
 package com.example.fitnessapp
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -41,7 +42,7 @@ class Login : AppCompatActivity() {
 
             val user = JSONObject()
             user.put("username","admin")
-            user.put("password","pas")
+            user.put("password","123")
 
             // user database for testing
             val users = JSONObject()
@@ -52,16 +53,23 @@ class Login : AppCompatActivity() {
 
             if (username!=usr && password==pwd){
 //                Log.d("case","username incor. password corr")
+                tvPromtMsg.setTextColor(Color.RED)
                 tvPromtMsg.text = "Username or Password was wrong retry"
             } else if(username==usr && password!=pwd){
 //                Log.d("case","username corr. password incorr")
+                tvPromtMsg.setTextColor(Color.RED)
                 tvPromtMsg.text = "Username or Password was wrong retry"
             } else if(username!=usr && password!=pwd){
 //                Log.d("case","username incorr. password incorr")
+                tvPromtMsg.setTextColor(Color.RED)
                 tvPromtMsg.text = "Username or Password was wrong retry"
             } else{
 //                Log.d("case","username corr. password corr")
+                tvPromtMsg.setTextColor(Color.GREEN)
                 tvPromtMsg.text = "Successful login"
+
+                val intent = Intent(this,Main::class.java)
+                startActivity(intent)
             }
 
 
