@@ -1,5 +1,6 @@
 package com.example.fitnessapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ class Signup : AppCompatActivity() {
         val tvPassword: TextView = findViewById(R.id.tvPassword)
         val tvConfirmPassword: TextView = findViewById(R.id.tvConfirmPassword)
         val btnCreateAcc: TextView = findViewById(R.id.btnCreateAcc)
+//        val tvPromptMsgE: TextView = findViewById(R.id.tvPromptMsgE)
 
         btnCreateAcc.setOnClickListener {
             val fullname = tvFullname.text.toString()
@@ -34,13 +36,14 @@ class Signup : AppCompatActivity() {
             user.put("password",password)
             users.put(fullname,user)
 
-            // save jsonObject into json file
-//            val file = File("data.json")
-//            file.writeText(users.toString())
+            val intent = Intent(this, Login::class.java)
+            intent.putExtra("user",users.toString())
 
             // for testing
             Log.d("test_json_data","$users datatype: ${users::class.simpleName}")  // datatype: jsonObject
             Log.d("test_signup","$fullname\n$username\n$email\n$password\n$confirmPsw")
+//            val lenOfFullname = fullname.length
+//            Log.d("len","$lenOfFullname")
 
         }
     }

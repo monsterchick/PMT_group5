@@ -21,6 +21,9 @@ class Login : AppCompatActivity() {
             val intent = Intent(this, Signup::class.java)
             startActivity(intent)
         }
+        val data = intent.getStringExtra("user")
+        Log.d("data","$data")
+
         // page login to page forgot
         val btnToCreateAcc: Button = findViewById(R.id.btnToForgotPage)
         btnToCreateAcc.setOnClickListener {
