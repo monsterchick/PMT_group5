@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".Forgot">
 
     <androidx.constraintlayout.widget.Guideline
@@ -59,9 +58,7 @@
         android:ems="10"
         android:hint="@string/tvInputEmail"
         android:inputType="textEmailAddress"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#929292"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline21"
         app:layout_constraintEnd_toStartOf="@+id/guideline20"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
