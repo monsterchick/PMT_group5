@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
 
 class Signup : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,13 +21,12 @@ class Signup : AppCompatActivity() {
         val tvPassword: TextView = findViewById(R.id.tvPassword)
         val tvConfirmPassword: TextView = findViewById(R.id.tvConfirmPassword)
         val btnCreateAcc: TextView = findViewById(R.id.btnCreateAcc)
-
+        val tvPromptMsg: TextView = findViewById(R.id.tvPromptMsg)
         btnCreateAcc.setOnClickListener {
             val email = tvEmail.text.toString()
             val username = tvUsername.text.toString()
             val password = tvPassword.text.toString()
             val confirmPsw = tvConfirmPassword.text.toString()
-
             // send data to login activity
             val intent = Intent(this, Login::class.java)
             intent.putExtra("username",username)
@@ -42,23 +42,40 @@ class Signup : AppCompatActivity() {
                 return pas1==pas2
             }
             isPasswordTheSame(password,confirmPsw)
-            if(isEmailValid(email) && (isPasswordTheSame(password,confirmPsw))){
-                Log.d("get","email valid? yes ${isPasswordTheSame(password, confirmPsw)}")
-            } else{
-                Log.d("get","email valid? no ${isPasswordTheSame(password, confirmPsw)}")
-            }
-            // alert sign up successfully
-            fun showAlertDialog(context: Context) {
-                val builder = AlertDialog.Builder(context)
-                builder.setTitle("Message")
-                builder.setMessage("Sign up Successful. Back to log in")
-                builder.setPositiveButton("OK"){ dialog, which ->
-                    // back to login page
-                    context.startActivity(intent)
+            // case1: email format is invalid | both password not match
+            if(!isEmailValid(email) && (!isPasswordTheSame(password,confirmPsw))){
+                Log.d("get","False False")
+                tvPromptMsg.setText("email format is invalid and both passwords do not match. Try again!")
+                tvPromptMsg.setTextColor(Color.RED)
+            // case2: email format is invalid | both password match
+            } else if(!isEmailValid(email) && (isPasswordTheSame(password,confirmPsw))) {
+                Log.d("get", "False True")
+                tvPromptMsg.setText("email format is invalid. Try again!")
+                tvPromptMsg.setTextColor(Color.RED)
+            // case3: email format is valid | both password not match
+            }else if(isEmailValid(email) && (!isPasswordTheSame(password,confirmPsw))){
+                Log.d("get","True False")
+                tvPromptMsg.setText("both passwords do not match. Try again!")
+                tvPromptMsg.setTextColor(Color.RED)
+            }else{
+                Log.d("get", "True True")
+                tvPromptMsg.setText("Sign up successful!")
+                tvPromptMsg.setTextColor(Color.GREEN)
+
+                // alert sign up successfully
+                fun showAlertDialog(context: Context) {
+                    val builder = AlertDialog.Builder(context)
+                    builder.setTitle("Message")
+                    builder.setMessage("Account created. Back to log in")
+                    builder.setPositiveButton("OK"){ dialog, which ->
+                        // back to login page
+                        context.startActivity(intent)
+                    }
+                    builder.show()
                 }
-                builder.show()
+                showAlertDialog(this)
             }
-            showAlertDialog(this)
+
 
             // for testing
 //            Log.d("test_json_data","$user datatype: ${user::class.simpleName}")  // datatype: jsonObject
