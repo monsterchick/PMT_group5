@@ -33,9 +33,7 @@ class Login : AppCompatActivity() {
         // save data to database
         val usnFromSignup = intent.getStringExtra("username")
         val pasFromSignup = intent.getStringExtra("password")
-
-        Log.d("usere","userextra $usnFromSignup $pasFromSignup")
-
+//        Log.d("usere","userextra $usnFromSignup $pasFromSignup")
 
         // login logic
         val tvUsername: TextView = findViewById(R.id.tvUsername)
