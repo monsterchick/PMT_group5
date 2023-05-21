@@ -11,6 +11,7 @@ import org.json.JSONObject
 
 
 class Login : AppCompatActivity() {
+    val jsonObj = JSONObject()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -21,8 +22,6 @@ class Login : AppCompatActivity() {
             val intent = Intent(this, Signup::class.java)
             startActivity(intent)
         }
-        val data = intent.getStringExtra("user")
-        Log.d("data","$data")
 
         // page login to page forgot
         val btnToCreateAcc: Button = findViewById(R.id.btnToForgotPage)
@@ -31,6 +30,11 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // save data to database
+        val usnFromSignup = intent.getStringExtra("username")
+        val pasFromSignup = intent.getStringExtra("password")
+
+        Log.d("usere","userextra $usnFromSignup $pasFromSignup")
 
 
         // login logic
@@ -42,27 +46,16 @@ class Login : AppCompatActivity() {
         btnLogin.setOnClickListener {
             val username = tvUsername.text.toString()
             val password = tvPassword.text.toString()
-
-            val user = JSONObject()
-            user.put("username","admin")
-            user.put("password","123")
-
-            // user database for testing
-            val users = JSONObject()
-            users.put("user_demo", user)
-
-            val pwd = users.getJSONObject("user_demo").getString("password")
-            val usr = users.getJSONObject("user_demo").getString("username")
-
-            if (username!=usr && password==pwd){
+            // login validation
+            if (username!=usnFromSignup && password==pasFromSignup){
 //                Log.d("case","username incor. password corr")
                 tvPromtMsg.setTextColor(Color.RED)
                 tvPromtMsg.text = "Username or Password was wrong retry"
-            } else if(username==usr && password!=pwd){
+            } else if(username==usnFromSignup && password!=pasFromSignup){
 //                Log.d("case","username corr. password incorr")
                 tvPromtMsg.setTextColor(Color.RED)
                 tvPromtMsg.text = "Username or Password was wrong retry"
-            } else if(username!=usr && password!=pwd){
+            } else if(username!=usnFromSignup && password!=pasFromSignup){
 //                Log.d("case","username incorr. password incorr")
                 tvPromtMsg.setTextColor(Color.RED)
                 tvPromtMsg.text = "Username or Password was wrong retry"
@@ -74,17 +67,6 @@ class Login : AppCompatActivity() {
                 val intent = Intent(this,Main::class.java)
                 startActivity(intent)
             }
-
-
-            // test
-            Log.d("test", "username:$username password:$password")
-            val obj = users.toString()
-            val specific_user = users.getJSONObject("user_demo").toString()
-            val pwdtest = users.getJSONObject("user_demo").getString("password")
-            Log.d("specific_user","specific_user:$specific_user")
-            Log.d("pwd","password: $pwdtest")
-            Log.d("testlogin","username:$username usr:$usr password:$password pwd:$pwd")
-
         }
     }
 }
