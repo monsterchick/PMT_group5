@@ -31,6 +31,7 @@ class Signup : AppCompatActivity() {
             val intent = Intent(this, Login::class.java)
             intent.putExtra("username",username)
             intent.putExtra("password",password)
+            Log.d("test","$username,$password")
 //            startActivity(intent)
 
             // email filter
