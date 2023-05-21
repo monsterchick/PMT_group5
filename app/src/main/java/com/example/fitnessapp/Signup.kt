@@ -77,7 +77,6 @@ class Signup : AppCompatActivity() {
                 showAlertDialog(this)
             }
 
-
             // for testing
 //            Log.d("test_json_data","$user datatype: ${user::class.simpleName}")  // datatype: jsonObject
 //            Log.d("test_signup","$fullname\n$username\n$email\n$password\n$confirmPsw")
